@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Inquiry Service",
+    "description": "API InfinitIMO - Inquiry Service",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Inquiry": {
+      "get": {
+        "tags": [
+          "Inquiry"
+        ],
+        "summary": "Get All",
+        "description": "This API method returns a list of all available inquiries.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Inquiry"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Inquiry"
+        ],
+        "summary": "Create",
+        "description": "This API method allows creating a new inquiry.",
+        "requestBody": {
+          "description": "The information of the new inquiry to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inquiry"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inquiry"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inquiry"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inquiry/{id}": {
+      "get": {
+        "tags": [
+          "Inquiry"
+        ],
+        "summary": "Get By ID",
+        "description": "This API method returns details of an inquiry based on its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the inquiry.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inquiry"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Inquiry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Gets or sets the unique ID of the inquiry.",
+            "format": "int32",
+            "example": 1
+          },
+          "date": {
+            "type": "string",
+            "description": "Gets or sets the date of the inquiry.",
+            "format": "date-time",
+            "example": "2023-08-09"
+          },
+          "propertyID": {
+            "type": "integer",
+            "description": "Gets or sets the ID of the associated property.",
+            "format": "int32",
+            "example": 123
+          },
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address of the person making the inquiry.",
+            "nullable": true,
+            "example": "john.doe@example.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the name of the person making the inquiry.",
+            "nullable": true,
+            "example": "John Doe"
+          },
+          "message": {
+            "type": "string",
+            "description": "Gets or sets the message or question associated with the inquiry.",
+            "nullable": true,
+            "example": "I'm interested in this property. Can you provide more details?"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an inquiry related to a property listing."
+      }
+    }
+  }
+}

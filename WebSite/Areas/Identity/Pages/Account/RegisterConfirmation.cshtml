@@ -1,0 +1,24 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Conta criada";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 text-center">
+        <h1>@ViewData["Title"]</h1>
+
+        @if (Model.DisplayConfirmAccountLink)
+        {
+            <p>
+                A sua conta foi criada com sucesso <a id="confirm-link" href="@Model.EmailConfirmationUrl" class="btn btn-primary btn-lg">Clique aqui para confirmar</a>.
+            </p>
+        }
+        else
+        {
+            <p>
+                Please check your email to confirm your account.
+            </p>
+        }
+    </div>
+</div>

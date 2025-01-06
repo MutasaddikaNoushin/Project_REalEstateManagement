@@ -1,0 +1,54 @@
+﻿@model Property
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+ 
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+<br />
+ 
+
+<div class="property-details">
+    <div style="display: flex; align-items: center;">
+        <div style="flex: 1;">
+            @{
+                string[] imageUrls = new string[]
+                {
+                    "../../Assets/Images/1.jpg",
+                    "../../Assets/Images/2.jpg",
+                    "../../Assets/Images/3.jpg",
+                    "../../Assets/Images/4.jpg",
+                    "../../Assets/Images/5.jpg",
+                    "../../Assets/Images/6.jpg",
+                    "../../Assets/Images/7.jpg",
+                    "../../Assets/Images/8.jpg",
+                    "../../Assets/Images/9.jpg",
+                    "../../Assets/Images/10.jpg"
+                };
+
+                var randomIndex = new Random().Next(0, imageUrls.Length);
+                var randomImageUrl = imageUrls[randomIndex];
+            }
+            <img style="width:500px; height:300px" src="@randomImageUrl" alt="Imagem Aleatória" />
+        </div>
+        <div style="margin-left: 20px; display: flex; text-align: right; flex-direction: column; justify-content: space-between;">            
+            <form method="post" action="/Inquiry/Create">                
+                <input type="hidden" name="PropertyID" value="@Model.Id" />
+                <input type="text" name="Name" placeholder="Introduza o seu nome" style="width: 60%; margin-bottom: 10px;" />
+                <input type="text" name="Email" placeholder="Introduza o seu e-mail" style="width: 60%; margin-bottom: 10px;" />
+                <textarea placeholder="Mensagem" name="Message" rows="6" style="width: 60%;"></textarea>
+                <button type="submit" style="margin-top: 10px; width: 60%; margin-left: auto;">Pedir mais informações</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p><strong>Preço:</strong> @Model.Price €</p>
+        <p><strong>Tipo:</strong> @Model.Type</p>
+        <p><strong>Localização:</strong> @Model.Location</p>
+        <p><strong>Descrição:</strong> @Html.Raw(@Model.Description)</p>
+    </div>
+</div>
